@@ -1,6 +1,7 @@
 import React from "react";
 
-export default function Table() {
+export default function Table(props) {
+  const rows = props.rows ?? [];
   return (
     <table>
       <thead>
@@ -14,16 +15,18 @@ export default function Table() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>16582136</td>
-          <td>Cogito</td>
-          <td>436</td>
-          <td>Stephen Hawking has died</td>
-          <td>http://www.bbc.com/news/uk-43396008</td>
-          <td>
-            <button>delete</button>
-          </td>
-        </tr>
+        {rows.map((row) => (
+          <tr>
+            <td>{row.id}</td>
+            <td>{row.author}</td>
+            <td>{row.comments}</td>
+            <td>{row.title}</td>
+            <td>{row.url}</td>
+            <td>
+              <button>delete</button>
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
