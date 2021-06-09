@@ -6,9 +6,10 @@ import axios from "axios";
 const HITS_PER_PAGE = 10;
 
 export default function Search() {
-  const [searchValue, setSearchValue] = useState("");
-  const [page, setPage] = useState(0);
-  const { data, setData } = useContext(DataContext);
+  const {
+    context: { searchValue, page },
+    setContext: { setSearchValue, setData },
+  } = useContext(DataContext);
   useEffect(() => {
     handleSearch(searchValue);
   }, [searchValue]);
@@ -27,8 +28,7 @@ export default function Search() {
           url: hit.url,
         }))
       )
-      .then((rows) => setData(rows))
-      .then(() => console.log(data));
+      .then((rows) => setData(rows));
   }
 
   return (
