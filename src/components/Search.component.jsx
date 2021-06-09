@@ -1,16 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import DataContext from "../contexts/DataContext";
 import axios from "axios";
+
+// number of data fetched by each request from HackerNews API
+const HITS_PER_PAGE = 10;
 
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
+  const [page, setPage] = useState(0);
+  // const [data, setData] = useContext(DataContext);
   useEffect(() => {
     handleSearch(searchValue);
   }, [searchValue]);
 
   function handleSearch(input) {
     axios
-      .get("http://hn.algolia.com/api/v1/search", { params: { query: input } })
-      .then((res) => console.log(res));
+      .get("http://hn.algolia.com/api/v1/search", {
+        params: { query: input, page: page, hitsPerPage: HITS_PER_PAGE },
+      })
+      .then((res) =>
+        res.data.hits.map((hit) => ({
+          id: hit.objectID,
+          author: hit.author,
+          comments: hit.num_comments,
+          title: hit.title,
+          url: hit.url,
+        }))
+      )
+      .then((rows) => console.log(rows));
   }
 
   return (
