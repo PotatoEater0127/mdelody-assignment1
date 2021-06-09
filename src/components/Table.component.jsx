@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import DataContext from "../contexts/DataContext";
 
 export default function Table(props) {
-  const rows = props.rows ?? [];
+  const { data, setData } = useContext(DataContext);
   return (
     <table>
       <thead>
@@ -15,7 +16,7 @@ export default function Table(props) {
         </tr>
       </thead>
       <tbody>
-        {rows.map((row) => (
+        {data.map((row) => (
           <tr>
             <td>{row.id}</td>
             <td>{row.author}</td>
