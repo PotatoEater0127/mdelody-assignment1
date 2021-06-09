@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hacker News Rest API</h1>
+      <div>
+        <input type="text" name="" id="" />
+      </div>
+      <div>
+        <input type="submit" value="Search" />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Author</th>
+            <th>Comments</th>
+            <th>Title</th>
+            <th>URL</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>16582136</td>
+            <td>Cogito</td>
+            <td>436</td>
+            <td>Stephen Hawking has died</td>
+            <td>http://www.bbc.com/news/uk-43396008</td>
+            <td>
+              <button>delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
