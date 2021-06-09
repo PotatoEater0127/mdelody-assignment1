@@ -8,7 +8,7 @@ const HITS_PER_PAGE = 10;
 export default function Search() {
   const [searchValue, setSearchValue] = useState("");
   const [page, setPage] = useState(0);
-  // const [data, setData] = useContext(DataContext);
+  const { data, setData } = useContext(DataContext);
   useEffect(() => {
     handleSearch(searchValue);
   }, [searchValue]);
@@ -27,7 +27,8 @@ export default function Search() {
           url: hit.url,
         }))
       )
-      .then((rows) => console.log(rows));
+      .then((rows) => setData(rows))
+      .then(() => console.log(data));
   }
 
   return (
